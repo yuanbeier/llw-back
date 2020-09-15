@@ -1,0 +1,35 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/llw-back?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+        username: root
+        password: 123456
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        database: 0
+        password: 123456
+        jedis:
+            pool:
+                #使用负数表示没有限制
+                max-active: 8
+                #连接池最大阻塞时间
+                max-wait: -1
+                #连接池中最大空闲连接
+                max-idle: 8
+                #连接池中最小空闲连接
+                min-idle: 0
+        #连接超时时间（毫秒）
+        timeout: 300
+
+mybatis-plus:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+        # 枚举
+    typeEnumsPackage: com.ybe.llwback.enumfilee
+
+logging:
+    level:
+        org:
+            springframework:
+                security: info
