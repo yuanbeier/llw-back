@@ -2,6 +2,7 @@ package com.ybe.llwback.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ybe.llwback.entity.User;
+import com.ybe.llwback.entity.security.SecurityUser;
 import com.ybe.llwback.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,13 @@ public class MyUserDetailsService  implements UserDetailsService {
         if(user == null){
             throw  new UsernameNotFoundException("用户不存在");
         }
-        org.springframework.security.core.userdetails.User userdetails =
-                new org.springframework.security.core.userdetails.User(
+        SecurityUser userdetails =
+                new SecurityUser(
                         user.getUsername(),
                         user.getPassword(),
                         new ArrayList<>());
+        userdetails.setUserId(user.getId());
+
         return userdetails;
     }
 }

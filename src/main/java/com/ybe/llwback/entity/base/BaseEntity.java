@@ -1,7 +1,9 @@
 package com.ybe.llwback.entity.base;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +12,8 @@ import java.util.Date;
  * @description: 实体基类
  * @verison:1.0
  */
-public class BaseEntity<T> {
+@Data
+public class BaseEntity<T> implements Serializable {
     @TableId(type= IdType.AUTO)
     public  T id;
     private int createId;
