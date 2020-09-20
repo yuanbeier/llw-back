@@ -1,8 +1,10 @@
 package com.ybe.llwback.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.ybe.llwback.entity.security.SecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -29,6 +31,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
          */
         this.setFieldValByName("createTime",new Date(),metaObject);
         this.setFieldValByName("updateTime",new Date(),metaObject);
+        Object principal = SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        if( principal instanceof SecurityUser){
+            SecurityUser principal1 = (SecurityUser) principal;
+            this.setFieldValByName("createId",principal1.getUserId() ,metaObject);
+            this.setFieldValByName("createName",principal1.getUsername(),metaObject);
+        }
 
     }
     /**
@@ -39,5 +48,12 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("updateFill running...");
         this.setFieldValByName("updateTime",new Date(),metaObject);
+
+        Object principal = SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        if( principal instanceof SecurityUser){
+            Integer userId = ((SecurityUser) principal).getUserId();
+            this.setFieldValByName("updateId",userId ,metaObject);
+        }
     }
 }

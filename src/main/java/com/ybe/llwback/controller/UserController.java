@@ -7,10 +7,8 @@ import com.ybe.llwback.service.impl.UserServiceImpl;
 import com.ybe.llwback.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -28,6 +26,11 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService ;
+
+    /**
+     * 获取用户信息
+     * @return
+     */
     @GetMapping("/getUserInfo")
     public UserVO getUserInfo(){
         UserVO userVO = new UserVO();
@@ -44,6 +47,15 @@ public class UserController {
             userVO.setPermission(new ArrayList<>());
         }
         return userVO;
+    }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    @GetMapping("/logout")
+    public boolean logout(){
+        return true;
     }
 
     @GetMapping

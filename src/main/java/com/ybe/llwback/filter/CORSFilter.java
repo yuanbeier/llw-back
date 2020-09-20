@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @author: beier
  * @date: 2020/9/16
- * @description: 过滤器
+ * @description: spring-security oauth2 过滤器
  * @version: 1.0
  */
 @Configuration
