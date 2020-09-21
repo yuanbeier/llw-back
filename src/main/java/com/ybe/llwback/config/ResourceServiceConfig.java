@@ -29,10 +29,10 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
 
         http
                 .csrf().disable()
-                .requestMatchers().antMatchers("/**")
-                .and()
                 .authorizeRequests()
-                .anyRequest().authenticated();
+                .antMatchers("/yy/**").permitAll()
+                .anyRequest()
+                .authenticated();
 
     }
 }
