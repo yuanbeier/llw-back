@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +31,21 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("add")
-    public void save(@RequestBody @Validated ArticleDto dto, BindingResult bindingResult){
+    public void save(@RequestBody @Validated ArticleDto dto, BindingResult bindingResult) throws UnsupportedEncodingException {
         if(bindingResult.hasErrors()){
             return ;
         }
         Article article = new Article();
         BeanUtils.copyProperties(dto,article);
+        article.setContent(dto.getContent().getBytes("UTF-8"));
         articleService.save(article);
     }
 
     @PutMapping
-    public void update(@RequestBody @Valid ArticleDto dto){
+    public void update(@RequestBody @Valid ArticleDto dto) throws UnsupportedEncodingException {
         Article article = new Article();
         BeanUtils.copyProperties(dto,article);
+        article.setContent(dto.getContent().getBytes("UTF-8"));
         articleService.updateById(article);
     }
 
@@ -66,6 +69,7 @@ public class ArticleController {
             ArticleDto dto = new ArticleDto();
             BeanUtils.copyProperties(x,dto);
             dto.setId(x.getId());
+            dto.setContent(new String(x.getContent()));
             articleDtos.add(dto);
         });
         return articleDtos;

@@ -1,7 +1,9 @@
 package com.ybe.llwback.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.ybe.llwback.entity.base.BaseEntity;
 import lombok.Data;
+import org.apache.ibatis.type.BlobTypeHandler;
 
 /**
  * @author: beier
@@ -13,6 +15,7 @@ import lombok.Data;
 public class Article extends BaseEntity<Integer> {
     private String title;
     private String subTitle;
-    private String content;
+    @TableField(typeHandler = BlobTypeHandler.class)
+    private byte[] content;
     private String createName;
 }

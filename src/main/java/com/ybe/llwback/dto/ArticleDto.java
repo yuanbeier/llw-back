@@ -2,9 +2,7 @@ package com.ybe.llwback.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
-import sun.plugin2.message.Message;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
