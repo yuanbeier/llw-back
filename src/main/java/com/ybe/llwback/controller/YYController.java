@@ -44,6 +44,7 @@ public class YYController {
     public ArticleDto getByArticleId(@PathVariable("id") int id){
         Article article = articleService.getById(id);
         ArticleDto dto = new ArticleDto();
+        dto.setContent(new String(article.getContent()));
         BeanUtils.copyProperties(article,dto);
         return dto;
     }
