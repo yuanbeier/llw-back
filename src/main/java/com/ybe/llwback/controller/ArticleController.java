@@ -62,6 +62,7 @@ public class ArticleController {
                 queryWrapper.lambda().like(Article::getTitle,articleDto.getTitle());
             }
         }
+        queryWrapper.lambda().orderByDesc(Article::getOrderId);
 
         List<Article> list = articleService.list(queryWrapper);
         List<ArticleDto> articleDtos = new ArrayList<>();

@@ -18,4 +18,5 @@ public class Article extends BaseEntity<Integer> {
     @TableField(typeHandler = BlobTypeHandler.class)
     private byte[] content;
     private String createName;
+    private int orderId;
 }

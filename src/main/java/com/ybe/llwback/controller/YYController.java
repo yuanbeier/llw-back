@@ -28,6 +28,7 @@ public class YYController {
     @PostMapping("/list")
     public List<ArticleDto> getList(){
         QueryWrapper<Article> queryWrapper = new QueryWrapper();
+        queryWrapper.lambda().orderByDesc(Article::getOrderId);
         List<Article> list = articleService.list(queryWrapper);
         List<ArticleDto> articleDtos = new ArrayList<>();
         list.forEach(x -> {

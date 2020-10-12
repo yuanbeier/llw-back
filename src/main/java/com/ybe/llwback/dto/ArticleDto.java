@@ -28,4 +28,9 @@ public class ArticleDto {
     private String createName;
 
     private Date createTime;
+
+    /**
+     * 序号
+     */
+    private int orderId ;
 }
