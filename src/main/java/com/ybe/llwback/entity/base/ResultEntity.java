@@ -18,7 +18,7 @@ public class ResultEntity<T> {
     private int code ;
 
     /**
-     * 错误消息
+     * 消息
      */
     private String message ;
 
